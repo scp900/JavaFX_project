@@ -24,10 +24,6 @@ public class HelloController {
     private TextField Password;
     public HashMap<String, String> logins = new HashMap<String, String>();
 
-    private Stage stage;
-    private Scene scene;
-
-
 
     @FXML
     public void onLogin(ActionEvent event) throws IOException {
@@ -44,8 +40,8 @@ public class HelloController {
                 Password.setEditable(false);
 
                 Parent root = FXMLLoader.load(Objects.requireNonNull(HelloController.class.getResource("testScene.fxml")));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             }else{
