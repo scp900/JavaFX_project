@@ -11,7 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import java.sql.*;
+import java.util.*;
 import java.io.IOException;
 import java.util.*;
 
@@ -26,12 +27,16 @@ public class HelloController {
 
 
     @FXML
-    public void onLogin(ActionEvent event) throws IOException {
+    public void onLogin(ActionEvent event) throws IOException, SQLException {
         String enteredUsername = Username.getText();
         String enteredPassword = Password.getText();
 
         logins.put("Username","Password");
         logins.put("Username2","Password");
+
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Peyton\\IdeaProjects\\JavaFX_project");
+
+
 
         if (logins.containsKey(enteredUsername)){
             if (Objects.equals(logins.get(enteredUsername), enteredPassword)){
