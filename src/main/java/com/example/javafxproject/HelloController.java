@@ -25,16 +25,43 @@ public class HelloController {
     private TextField Password;
     public HashMap<String, String> logins = new HashMap<String, String>();
 
+    public ArrayList<Student> Student = new ArrayList<>();
+
+
+
+    private static Connection getConnection() throws SQLException {
+        String dbUrl = "jdbc:sqlite:data.sqlite";
+        Connection connection = DriverManager.getConnection(dbUrl);
+        return connection;
+    }
 
     @FXML
     public void onLogin(ActionEvent event) throws IOException, SQLException {
+
+        Connection studentInfo;
+
+        try {
+            studentInfo = getConnection();
+
+            Statement statement = studentInfo.createStatement();
+            String query1 = "SELECT StudentID FROM studentInfo";
+            ResultSet studentResult = statement.executeQuery(query1);
+
+           while(studentResult.next()){
+               System.out.println(studentResult);
+            }
+
+        }catch(SQLException err){
+            System.out.println("Database cannot connect.");
+        }
+
         String enteredUsername = Username.getText();
         String enteredPassword = Password.getText();
 
         logins.put("Username","Password");
         logins.put("Username2","Password");
 
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Peyton\\IdeaProjects\\JavaFX_project");
+
 
 
 
