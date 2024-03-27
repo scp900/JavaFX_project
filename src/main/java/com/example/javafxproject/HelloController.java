@@ -37,22 +37,42 @@ public class HelloController {
 
     @FXML
     public void onLogin(ActionEvent event) throws IOException, SQLException {
-
+        String query1 = "SELECT StudentID FROM studentInfo";
+        String query2 = "SELECT Name FROM studentInfo";
+        String query3 = "SELECT Gender FROM studentInfo";
+        String query4 = "SELECT Age FROM studentInfo";
         Connection studentInfo;
 
         try {
             studentInfo = getConnection();
 
             Statement statement = studentInfo.createStatement();
-            String query1 = "SELECT StudentID FROM studentInfo";
-            ResultSet studentResult = statement.executeQuery(query1);
+            Statement statement2 = studentInfo.createStatement();
+            Statement statement3 = studentInfo.createStatement();
+            Statement statement4 = studentInfo.createStatement();
 
-           while(studentResult.next()){
-               System.out.println(studentResult);
+
+            ResultSet stID = statement.executeQuery(query1);
+            ResultSet stName = statement2.executeQuery(query2);
+            ResultSet stSex = statement3.executeQuery(query3);
+            ResultSet stAge = statement4.executeQuery(query4);
+
+
+           while(stID.next()){
+               System.out.println(stID.getInt("StudentID") + "\t");
+            }
+            while(stName.next()){
+                System.out.println(stName.getString("Name") + "\t");
+            }
+           while(stSex.next()){
+               System.out.println(stSex.getString("Gender") + "\t");
+           }
+            while(stAge.next()){
+                System.out.println(stAge.getInt("Age") + "\t");
             }
 
         }catch(SQLException err){
-            System.out.println("Database cannot connect.");
+            System.out.println(err.getMessage());
         }
 
         String enteredUsername = Username.getText();
