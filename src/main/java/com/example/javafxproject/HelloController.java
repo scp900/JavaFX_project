@@ -16,6 +16,8 @@ import java.util.*;
 import java.io.IOException;
 import java.util.*;
 
+import static java.lang.Integer.parseInt;
+
 public class HelloController {
     @FXML
     private Label welcomeText;
@@ -43,6 +45,8 @@ public class HelloController {
         String query4 = "SELECT Age FROM studentInfo";
         Connection studentInfo;
 
+
+        String requestID = "";
         try {
             studentInfo = getConnection();
 
@@ -58,35 +62,46 @@ public class HelloController {
             ResultSet stAge = statement4.executeQuery(query4);
 
 
-           while(stID.next()){
-               System.out.println(stID.getInt("StudentID") + "\t");
+            while (stID.next()) {
+//                System.out.println(stID.getInt("StudentID") + "\t");
+                requestID = (stID.getString("StudentID"));
+
+
             }
-            while(stName.next()){
-                System.out.println(stName.getString("Name") + "\t");
+            while (stName.next()) {
+//                System.out.println(stName.getString("Name") + "\t");
             }
-           while(stSex.next()){
-               System.out.println(stSex.getString("Gender") + "\t");
-           }
-            while(stAge.next()){
-                System.out.println(stAge.getInt("Age") + "\t");
+            while (stSex.next()) {
+//                System.out.println(stSex.getString("Gender") + "\t");
+            }
+            while (stAge.next()) {
+//                System.out.println(stAge.getInt("Age") + "\t");
             }
 
-        }catch(SQLException err){
+        } catch (SQLException err) {
             System.out.println(err.getMessage());
         }
 
         String enteredUsername = Username.getText();
         String enteredPassword = Password.getText();
+        String dummy = Username.getText();
 
-        logins.put("Username","Password");
-        logins.put("Username2","Password");
+        logins.put("Username", "Password");
+        logins.put("Username2", "Password");
+
+        System.out.println((enteredUsername));
+        System.out.println(requestID);
+
+        if (enteredUsername.equals(requestID)) {
+            System.out.println("IDs match");
+
+        }else{
+            System.out.println("IDs do not match");
+        }
 
 
-
-
-
-        if (logins.containsKey(enteredUsername)){
-            if (Objects.equals(logins.get(enteredUsername), enteredPassword)){
+        if (logins.containsKey(enteredUsername)) {
+            if (Objects.equals(logins.get(enteredUsername), enteredPassword)) {
                 welcomeText.setText("Login Correct. Redirecting");
                 Username.setEditable(false);
                 Password.setEditable(false);
@@ -96,10 +111,10 @@ public class HelloController {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            }else{
+            } else {
                 welcomeText.setText("Password is incorrect");
             }
-        }else{
+        } else {
             welcomeText.setText("Username Not Found");
         }
     }
