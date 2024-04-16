@@ -110,7 +110,6 @@ public class HelloController {
     }
 
     public void onToHome(ActionEvent actionEvent) {
-
     }
 
     public void onSearch(ActionEvent actionEvent) {
