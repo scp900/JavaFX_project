@@ -33,8 +33,7 @@ public class HelloController {
 
     private static Connection getConnection() throws SQLException {
         String dbUrl = "jdbc:sqlite:data.sqlite";
-        Connection connection = DriverManager.getConnection(dbUrl);
-        return connection;
+        return DriverManager.getConnection(dbUrl);
     }
 
     @FXML
@@ -83,11 +82,9 @@ public class HelloController {
         }
 
         String enteredUsername = Username.getText();
-        String enteredPassword = Password.getText();
-        String dummy = Username.getText();
 
-        logins.put("Username", "Password");
-        logins.put("Username2", "Password");
+
+        
 
         System.out.println((enteredUsername));
         System.out.println(requestID);
@@ -98,31 +95,24 @@ public class HelloController {
         }else{
             System.out.println("IDs do not match");
         }
-
-
-        if (logins.containsKey(enteredUsername)) {
-            if (Objects.equals(logins.get(enteredUsername), enteredPassword)) {
-                welcomeText.setText("Login Correct. Redirecting");
-                Username.setEditable(false);
-                Password.setEditable(false);
-
-                Parent root = FXMLLoader.load(Objects.requireNonNull(HelloController.class.getResource("testScene.fxml")));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } else {
-                welcomeText.setText("Password is incorrect");
-            }
-        } else {
-            welcomeText.setText("Username Not Found");
-        }
     }
 
     @FXML
-    protected void onExit() {
-        System.exit(0);
+
+
+    public void onNewStudent(ActionEvent actionEvent) {
     }
 
+    public void onStudentLookup(ActionEvent actionEvent) {
+    }
 
+    public void onAllStudents(ActionEvent actionEvent) {
+    }
+
+    public void onToHome(ActionEvent actionEvent) {
+
+    }
+
+    public void onSearch(ActionEvent actionEvent) {
+    }
 }

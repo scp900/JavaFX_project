@@ -12,10 +12,8 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText" text="Please make a selection"/>
-    <Button text="Add New Student" onAction="#onNewStudent"/>
-    <Button text="Student Look Up" onAction="#onStudentLookup"/>
-    <Button text="All Students" onAction="#onAllStudents"/>
-    <Button text="Function Tests" onAction="#onLogin"/>
+    <Label fx:id="welcomeText" text="Enter a StudentID"/>
+    <Button text="Search" onAction="#onSearch"/>
+    <Button text="Back" onAction="#onToHome"/>
     <TextField fx:id="Username" promptText="Enter Your Username"/>
 </VBox>
