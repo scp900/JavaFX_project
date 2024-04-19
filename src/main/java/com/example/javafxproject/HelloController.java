@@ -31,6 +31,9 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 
 public class HelloController {
+
+    public String SearchedID = "";
+
     public Label StudentID_text;
     @FXML
     public Label Name_text;
@@ -62,6 +65,10 @@ public class HelloController {
     public TableColumn<Student, String> columnStuGender;
     @FXML
     public TableColumn<Student, String> columnStuAge;
+    public TextField studentIDInputEdit;
+    public TextField studentNameInputEdit;
+    public TextField studentAgeInputEdit;
+    public TextField studentGenderInputEdit;
     @FXML
     private Label welcomeText;
     @FXML
@@ -140,7 +147,7 @@ public class HelloController {
         stage.show();
     }
 
-    public void onAllStudents(ActionEvent actionEvent) throws IOException {
+    public void onAllStudents(ActionEvent actionEvent) throws IOException, InterruptedException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(HelloController.class.getResource("allStudents.fxml")));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -218,11 +225,7 @@ public class HelloController {
         } catch (SQLException e) {
             System.out.println(e.getMessage());;
         }
-    }
-
-
-    private void initTable() {
-
+        enteredStudentID.setText("Student deleted.");
     }
 
 
@@ -256,7 +259,7 @@ public class HelloController {
     }
 
 
-    public void refreshAll(ActionEvent actionEvent) {
+    public void refreshPage() {
         tableView.getColumns().clear();
         tableView.getColumns().addAll(columnStuID, columnStuAge, columnStuName, columnStuGender);
 
@@ -268,5 +271,67 @@ public class HelloController {
         ObservableList<Student> data = fetchDataFromDatabase();
         tableView.setItems(data);
 
+
+    }
+
+    public void refreshAll(ActionEvent actionEvent) {
+        refreshPage();
+    }
+
+    public void onEditStudent(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(HelloController.class.getResource("studentEdit.fxml")));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onSave(ActionEvent actionEvent) {
+        String enteredID = studentIDInputEdit.getText();
+        String enteredName = studentNameInputEdit.getText();
+        String enteredAge = studentAgeInputEdit.getText();
+        String enteredGender = studentGenderInputEdit.getText();
+        String query1 = "UPDATE studentInfo SET studentId = '"+enteredID+"', Name = '"+enteredName+"', Age = '"+enteredAge+"', Gender = '"+enteredGender+"' WHERE studentId = '"+SearchedID+"' ";
+        Connection studentInfo;
+
+        try {
+            studentInfo = getConnection();
+            Statement statement = studentInfo.createStatement();
+            statement.executeUpdate(query1);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());;
+        }
+    }
+
+    public void onSearchEdit(ActionEvent actionEvent) {
+        String enteredID = studentIDInputEdit.getText();
+        SearchedID = studentIDInputEdit.getText();
+        String query1 = "SELECT * FROM studentInfo";
+        Connection studentInfo;
+
+        try {
+            studentInfo = getConnection();
+            Statement statement = studentInfo.createStatement();
+            ResultSet rs = statement.executeQuery(query1);
+
+            while (rs.next()){
+                String convertedResults = rs.getString("StudentID");
+                String convertedResults2 = rs.getString("Name");
+                String convertedResults3 = rs.getString("Age");
+                String convertedResults4 = rs.getString("Gender");
+                if (enteredID.equals(convertedResults) ){
+                    studentIDInputEdit.setText(convertedResults);
+                    studentNameInputEdit.setText(convertedResults2);
+                    studentAgeInputEdit.setText(convertedResults3);
+                    studentGenderInputEdit.setText(convertedResults4);
+                    studentInfo.close();
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());;
+        }
     }
 }
+

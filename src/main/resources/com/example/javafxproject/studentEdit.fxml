@@ -12,9 +12,12 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText" text="Please make a selection"/>
-    <Button text="Add New Student" onAction="#onNewStudent"/>
-    <Button text="Edit Student Info" onAction="#onEditStudent"/>
-    <Button text="Student Look Up/Delete" onAction="#onStudentLookup"/>
-    <Button text="All Students" onAction="#onAllStudents"/>
+    <Label fx:id="enteredStudentID" text="Enter a StudentID to lookup a student"/>
+    <TextField fx:id="studentIDInputEdit" promptText="Enter a student ID"/>
+    <TextField fx:id="studentNameInputEdit"/>
+    <TextField fx:id="studentAgeInputEdit"/>
+    <TextField fx:id="studentGenderInputEdit"/>
+    <Button text="Search" onAction="#onSearchEdit"/>
+    <Button text="Save" onAction="#onSave"/>
+    <Button text="Back" onAction="#onToHome"/>
 </VBox>

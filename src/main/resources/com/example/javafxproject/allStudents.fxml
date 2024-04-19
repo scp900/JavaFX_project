@@ -15,7 +15,7 @@
     </padding>
 
     <Label fx:id="enteredStudentID" text="All Students"/>
-    <Button text="Refresh" onAction="#refreshAll"/>
+    <Button text="Load Data" onAction="#refreshAll"/>
     <Button text="Back" onAction="#onToHome"/>
     <TableView fx:id="tableView">
         <columns>
