@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.javafxproject.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="enteredStudentID" text="All Students"/>
+    <Button text="Load Data" onAction="#refreshAll"/>
+    <Button text="Back" onAction="#onToHome"/>
+    <TableView fx:id="tableView">
+        <columns>
+            <TableColumn text = "Student ID" fx:id="columnStuID">
+            </TableColumn>
+            <TableColumn text = "Name" fx:id="columnStuName">
+            </TableColumn>
+            <TableColumn text = "Gender" fx:id="columnStuGender">
+            </TableColumn>
+            <TableColumn text = "Age" fx:id="columnStuAge">
+            </TableColumn>
+        </columns>
+    </TableView>
+</VBox>
