@@ -1,24 +1,33 @@
 package com.example.javafxproject;
-import java.util.*;
 
 public class Student {
-    int studentID;
-    int age;
-    String name;
-    String sex;
+    private final String name;
+    private final String id;
+    private final String age;
+    private final String gender;
 
-    public Student(int studentID, String name, int age, String sex){
-        this.studentID = studentID;
-        this.age = age;
+
+    public Student(String name, String id, String age, String gender) {
         this.name = name;
-        this.sex = sex;
+        this.id = id;
+        this.age = age;
+        this.gender = gender;
+
     }
 
-    public void getID(){
-        System.out.println(this.studentID);
+    public String getName() {
+        return name;
     }
 
-    public void setID(int id){
-        this.studentID = id;
+    public String getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getId() {
+        return id;
     }
 }

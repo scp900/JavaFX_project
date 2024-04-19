@@ -14,8 +14,6 @@
 
     <Label fx:id="welcomeText" text="Please make a selection"/>
     <Button text="Add New Student" onAction="#onNewStudent"/>
-    <Button text="Student Look Up" onAction="#onStudentLookup"/>
+    <Button text="Student Look Up/Delete" onAction="#onStudentLookup"/>
     <Button text="All Students" onAction="#onAllStudents"/>
-    <Button text="Function Tests" onAction="#onLogin"/>
-    <TextField fx:id="Username" promptText="Enter Your Username"/>
 </VBox>

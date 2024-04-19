@@ -12,13 +12,12 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="enteredStudentID" text="Enter a StudentID"/>
-    <TextField fx:id="studentIDInput" promptText="Enter a student ID"/>
-    <Button text="Search" onAction="#onSearch"/>
+    <Label fx:id="studentAddHeader" text="Enter Student Info"/>
+    <TextField fx:id="AddstudentIDInput" promptText="Enter a student ID"/>
+    <TextField fx:id="studentNameInput" promptText="Enter the student name"/>
+    <TextField fx:id="studentGenderInput" promptText="Enter the student gender"/>
+    <TextField fx:id="studentAgeInput" promptText="Enter the student age"/>
+    <Button text="Add" onAction="#onAdd"/>
     <Button text="Back" onAction="#onToHome"/>
-    <Label fx:id="StudentID_text" text="StudentID: "/>
-    <Label fx:id="Name_text" text="Name: "/>
-    <Label fx:id="Sex_text" text="Gender: "/>
-    <Label fx:id="Age_Text" text="Age: "/>
-    <Button text="Delete" onAction="#onDelete"/>
+
 </VBox>
